@@ -5,6 +5,17 @@ export default {
     extend: {
       backgroundColor: {
         bgLogin: "#10141E",
+        bgLoginCard: "#161D2F",
+        bgLoginBtn: "#FC4747",
+      },
+      width: {
+        cardWidth: "327px",
+      },
+      colors: {
+        borderBottom: "#5A698F",
+      },
+      height: {
+        inputHeight: "37px",
       },
     },
   },
