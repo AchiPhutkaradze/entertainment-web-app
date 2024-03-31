@@ -1,10 +1,20 @@
+import { useEffect } from "react";
 import loginIcon from "../assets/images/film-icon.svg";
 import { Link } from "react-router-dom";
+type emailAndPass = {
+  email: string;
+  password: string;
+};
 export default function Login() {
   const inputStyle = {
     borderBottom: "1px solid #5A698F",
   };
-
+  useEffect(() => {
+    const mail: emailAndPass | string = JSON.parse(
+      localStorage.getItem("Email") || ""
+    );
+    console.log(mail);
+  }, []);
   return (
     <div className=" h-lvh bg-bgLogin">
       <div className="flex pt-12 flex-col gap-y-14  items-center">
