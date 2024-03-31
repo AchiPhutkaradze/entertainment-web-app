@@ -7,11 +7,15 @@ type inputsType = {
   repeatPass: string;
 };
 export default function Register() {
-  const { register, handleSubmit } = useForm<inputsType>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    watch,
+  } = useForm<inputsType>();
   const inputStyle = {
     borderBottom: "1px solid #5A698F",
   };
-
   const onsubmit = (data: inputsType) => {
     console.log(data);
     let InputValue = () => {
@@ -23,7 +27,7 @@ export default function Register() {
     localStorage.setItem("Email", JSON.stringify(InputValue()));
     console.log(InputValue());
   };
-
+  console.log("Error", errors);
   return (
     <div className=" h-lvh bg-bgLogin">
       <div className="flex pt-12 flex-col gap-y-14  items-center">
@@ -36,24 +40,72 @@ export default function Register() {
             onSubmit={handleSubmit(onsubmit)}
             className=" flex flex-col gap-y-6 mt-10 pl-6 pr-6"
           >
-            <input
-              style={inputStyle}
-              className="bg-bgLoginCard pl-4 h-inputHeight outline-none text-white"
-              placeholder="Email address"
-              {...register("email")}
-            />
-            <input
-              style={inputStyle}
-              className="bg-bgLoginCard pl-4 h-inputHeight outline-none text-white"
-              placeholder="Password"
-              {...register("password")}
-            />
-            <input
-              style={inputStyle}
-              className="bg-bgLoginCard pl-4 h-inputHeight outline-none text-white"
-              placeholder="Repeat Password"
-              {...register("repeatPass")}
-            />
+            <div className="flex relative w-full">
+              <input
+                style={inputStyle}
+                className="bg-bgLoginCard pl-4 h-inputHeight outline-none text-white w-full"
+                placeholder="Email address"
+                {...register("email", {
+                  required: "can't be empty",
+                  pattern: {
+                    value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                    message: "write valid mail",
+                  },
+                })}
+              />
+              {errors.email && (
+                <div className="absolute  whitespace-pre  right-0 ">
+                  <span
+                    style={{ fontSize: "13px" }}
+                    className="leading-4  text-red-500 font-normal"
+                  >
+                    {errors.email.message}
+                  </span>
+                </div>
+              )}
+            </div>
+            <div className="flex relative w-full">
+              <input
+                style={inputStyle}
+                className="bg-bgLoginCard pl-4 h-inputHeight outline-none text-white w-full"
+                placeholder="Password"
+                {...register("password", { required: "can't be empty" })}
+              />
+              {errors.password && (
+                <div className="absolute  whitespace-pre  right-0 ">
+                  <span
+                    style={{ fontSize: "13px" }}
+                    className="leading-4  text-red-500 font-normal"
+                  >
+                    {errors.password.message}
+                  </span>
+                </div>
+              )}
+            </div>
+            <div className="flex relative w-full">
+              <input
+                style={inputStyle}
+                className="bg-bgLoginCard pl-4 h-inputHeight outline-none text-white w-full"
+                placeholder="Repeat Password"
+                {...register("repeatPass", {
+                  required: true,
+                  pattern: {
+                    value: new RegExp(`^${watch("password")}$`),
+                    message: "Passwords do not match",
+                  },
+                })}
+              />
+              {errors.repeatPass && (
+                <div className="absolute  whitespace-pre  right-0 ">
+                  <span
+                    style={{ fontSize: "11px" }}
+                    className="leading-4  text-red-500 font-normal"
+                  >
+                    {errors.repeatPass.message}
+                  </span>
+                </div>
+              )}
+            </div>
             <button
               type="submit"
               className=" bg-bgLoginBtn  w-full text-center pt-4 pb-4 rounded-md mt-10 text-white"
