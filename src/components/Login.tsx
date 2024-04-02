@@ -56,18 +56,60 @@ export default function Login() {
             onSubmit={handleSubmit(onSubmit)}
             className=" flex flex-col gap-y-6 mt-10 pl-6 pr-6"
           >
-            <input
-              style={inputStyle}
-              className="bg-bgLoginCard pl-4 h-inputHeight outline-none text-white"
-              placeholder="Email address"
-              {...register("email")}
-            />
-            <input
-              style={inputStyle}
-              className="bg-bgLoginCard pl-4 h-inputHeight outline-none text-white"
-              placeholder="Password"
-              {...register("password")}
-            />
+            <div className="flex relative w-full">
+              <input
+                style={inputStyle}
+                className="bg-bgLoginCard pl-4 h-inputHeight outline-none text-white w-full"
+                placeholder="Email address"
+                {...register("email", {
+                  required: "can't be empty",
+                  pattern: {
+                    value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                    message: "enter valid email",
+                  },
+                })}
+              />
+              {errors.email && (
+                <div className="absolute  whitespace-pre  right-0 ">
+                  <span
+                    style={{ fontSize: "13px" }}
+                    className="leading-4  text-red-500 font-normal"
+                  >
+                    {errors.email.message}
+                  </span>
+                </div>
+              )}
+              {errors.email && (
+                <div className="absolute  whitespace-pre  right-0 ">
+                  <span
+                    style={{ fontSize: "13px" }}
+                    className="leading-4  text-red-500 font-normal"
+                  >
+                    {errors.email.message}
+                  </span>
+                </div>
+              )}
+            </div>
+            <div className="flex relative w-full">
+              <input
+                style={inputStyle}
+                className="bg-bgLoginCard pl-4 h-inputHeight outline-none text-white w-full"
+                placeholder="Password"
+                {...register("password", {
+                  required: "can't be empty",
+                })}
+              />
+              {errors.password && (
+                <div className="absolute  whitespace-pre  right-0 ">
+                  <span
+                    style={{ fontSize: "13px" }}
+                    className="leading-4  text-red-500 font-normal"
+                  >
+                    {errors.password.message}
+                  </span>
+                </div>
+              )}
+            </div>
             {correctEmailAndPass ? (
               <Link to={`/home`}>
                 <button

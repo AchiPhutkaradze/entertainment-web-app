@@ -49,7 +49,7 @@ export default function Register() {
                   required: "can't be empty",
                   pattern: {
                     value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-                    message: "write valid mail",
+                    message: "enter valid email",
                   },
                 })}
               />
