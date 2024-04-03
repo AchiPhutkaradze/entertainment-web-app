@@ -7,6 +7,7 @@ export default {
         bgLogin: "#10141E",
         bgLoginCard: "#161D2F",
         bgLoginBtn: "#FC4747",
+        bgNavBar: "#161D2F",
       },
       width: {
         cardWidth: "327px",
