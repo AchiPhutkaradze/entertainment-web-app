@@ -1,4 +1,4 @@
-import loginIcon from "../assets/images/film-icon.svg";
+import loginIcon from "../../public/assets/images/film-icon.svg";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
@@ -111,7 +111,7 @@ export default function Login() {
               )}
             </div>
             {correctEmailAndPass ? (
-              <Link to={`/home`}>
+              <Link to={`/main`}>
                 <button
                   type="submit"
                   className=" bg-bgLoginBtn  w-full text-center pt-4 pb-4 rounded-md mt-10 text-white"

@@ -1,4 +1,4 @@
-import loginIcon from "../assets/images/film-icon.svg";
+import loginIcon from "../../public/assets/images/film-icon.svg";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 type inputsType = {
