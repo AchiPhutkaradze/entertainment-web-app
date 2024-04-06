@@ -19,10 +19,11 @@ export default function Login() {
   });
 
   useEffect(() => {
-    let emailAndPass: emailAndPass | any = JSON.parse(
-      localStorage.getItem("Email") || ""
-    );
-    setValidationObj(emailAndPass);
+    const emailAndPassJSON = localStorage.getItem("Email");
+    if (emailAndPassJSON) {
+      let emailAndPass: emailAndPass = JSON.parse(emailAndPassJSON);
+      setValidationObj(emailAndPass);
+    }
   }, []);
 
   const {
@@ -111,7 +112,7 @@ export default function Login() {
               )}
             </div>
             {correctEmailAndPass ? (
-              <Link to={`/main`}>
+              <Link to={`/home`}>
                 <button
                   type="submit"
                   className=" bg-bgLoginBtn  w-full text-center pt-4 pb-4 rounded-md mt-10 text-white"
