@@ -11,16 +11,32 @@ export default function TrendingSlider() {
   );
 
   const settings = {
-    dots: true,
-    infinite: false,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    speed: 5000,
-    autoplaySpeed: 2000,
-    cssEase: "linear",
-    arrows: false,
-    variableWidth: false,
+    responsive: [
+      {
+        breakpoint: 700,
+        settings: { 
+          dots: true,
+          infinite: true,
+          slidesToShow: 1.5,
+          slidesToScroll: 1,
+          autoplay: true,
+          speed: 5000,
+          autoplaySpeed: 2000,
+          cssEase: "linear",
+          arrows: false,
+          variableWidth: false,
+        },
+      },
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          initialSlide: 1,
+          arrows: false,
+        },
+      },
+    ],
   };
   return (
     <>
