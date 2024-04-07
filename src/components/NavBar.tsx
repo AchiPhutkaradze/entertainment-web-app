@@ -5,8 +5,12 @@ import movieIcon from "../../public/assets/images/icon-nav-movies.svg";
 import seriesIcon from "../../public/assets/images/icon-nav-tv-series.svg";
 import bookmarkIcon from "../../public/assets/images/icon-nav-bookmark.svg";
 import searchIcon from "../../public/assets/images/search-icon.svg";
+import FullHomeIcon from "../../public/assets/images/icon-home-full.svg";
 import TrendingSlider from "./TrendingSlider";
+import { useLocation } from "react-router-dom";
 export default function NavBar() {
+  const location = useLocation();
+  const locationPath = location.pathname;
   return (
     <>
       <div className="bg-darkBlue">
@@ -15,10 +19,10 @@ export default function NavBar() {
             <img src={mainIcon} />
           </div>
           <nav className="h-14 w-full justify-center">
-            <ul className="flex gap-x-6 justify-center pt-5">
+            <ul className="flex gap-x-6 justify-center pt-5 items-center">
               <li>
                 {" "}
-                <img src={homeIcon} />
+                <img src={locationPath !== "/home" ? homeIcon : FullHomeIcon} />
               </li>
               <li>
                 <img src={movieIcon} />
