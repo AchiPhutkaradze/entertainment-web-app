@@ -21,6 +21,7 @@ export default {
       },
       opacity: {
         textOpacity: "65%",
+        circleOpacity: "50%",
       },
     },
   },

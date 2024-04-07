@@ -1,6 +1,7 @@
 import data from "../../public/data.json";
 import moviesIcon from "../../public/assets/images/icon-nav-movies.svg";
 import seriesIcon from "../../public/assets/images/icon-nav-tv-series.svg";
+import bookmarkIcon from "../../public/assets/images/icon-bookmark-empty-.svg";
 
 type ThumbnailType = {
   trending?: {
@@ -37,7 +38,7 @@ export default function Home() {
       <div className=" grid grid-cols-2 pt-6 gap-4">
         {filteredData.map((item: dataType) => {
           return (
-            <div key={item.title}>
+            <div key={item.title} className="relative">
               <div>
                 <img
                   className="w-full  rounded-lg"
@@ -58,6 +59,9 @@ export default function Home() {
                 . {item.rating}
               </div>
               <div className="text-white">{item.title}</div>
+              <div className="w-8 h-8 bg-darkBlue opacity-circleOpacity absolute top-2 right-2 rounded-2xl flex items-center justify-center ">
+                <img src={bookmarkIcon} />
+              </div>
             </div>
           );
         })}

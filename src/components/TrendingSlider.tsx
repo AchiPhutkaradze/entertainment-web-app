@@ -3,6 +3,8 @@ import { useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import bookmarkIcon from "../../public/assets/images/icon-bookmark-empty-.svg";
+
 export default function TrendingSlider() {
   const [trending, _setTrending] = useState(
     data.filter((item) => {
@@ -54,6 +56,9 @@ export default function TrendingSlider() {
                   {item.year} . {item.category} . {item.rating}
                 </div>
                 <div className="text-white">{item.title}</div>
+              </div>
+              <div className="w-8 h-8 bg-darkBlue opacity-circleOpacity absolute top-2 right-2 rounded-2xl flex items-center justify-center ">
+                <img src={bookmarkIcon} />
               </div>
             </div>
           ))}
