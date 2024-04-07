@@ -14,14 +14,12 @@ export default function TrendingSlider() {
     responsive: [
       {
         breakpoint: 700,
-        settings: { 
+        settings: {
           dots: true,
-          infinite: true,
+          infinite: false,
           slidesToShow: 1.5,
           slidesToScroll: 1,
-          autoplay: true,
-          speed: 5000,
-          autoplaySpeed: 2000,
+          autoplay: false,
           cssEase: "linear",
           arrows: false,
           variableWidth: false,

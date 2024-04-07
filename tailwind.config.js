@@ -19,6 +19,9 @@ export default {
       height: {
         inputHeight: "37px",
       },
+      opacity: {
+        textOpacity: "65%",
+      },
     },
   },
   plugins: [],
