@@ -13,15 +13,16 @@ function App() {
   const toogleBkmark = (index: number) => {
     const updateItems = [...dataItems];
     updateItems[index].isBookmarked = !updateItems[index].isBookmarked;
-    console.log(updateItems);
     setDataItems(updateItems);
   };
+  console.log(dataItems);
+
   return (
     <Routes>
       <Route path="/" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route element={<NavbarLayout />}>
-        <Route path="/home" element={<Home toogleBkmark={toogleBkmark } />} />
+        <Route path="/home" element={<Home toogleBkmark={toogleBkmark} />} />
         <Route path="/bookmark" element={<Bookmarked />} />
       </Route>
     </Routes>

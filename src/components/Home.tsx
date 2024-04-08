@@ -4,8 +4,6 @@ import seriesIcon from "../../public/assets/images/icon-nav-tv-series.svg";
 import bookmarkIcon from "../../public/assets/images/icon-bookmark-empty-.svg";
 import bookmarkIconFull from "../../public/assets/images/icon-bookmark-full.svg";
 
-import { useState } from "react";
-
 type ThumbnailType = {
   trending?: {
     small: string;
@@ -67,12 +65,10 @@ export default function Home({ toogleBkmark }: HomeProps) {
               <div className="text-white">{item.title}</div>
               <div className="w-8 h-8 bg-darkBlue opacity-circleOpacity absolute top-2 right-2 rounded-2xl flex items-center justify-center ">
                 <img
-                  src={
-                    item.isBookmarked === false
-                      ? bookmarkIcon
-                      : bookmarkIconFull
-                  }
                   onClick={() => toogleBkmark(index)}
+                  src={
+                    item.isBookmarked === true ? bookmarkIconFull : bookmarkIcon
+                  }
                 />
               </div>
             </div>
