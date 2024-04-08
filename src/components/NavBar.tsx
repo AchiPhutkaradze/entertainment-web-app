@@ -7,7 +7,7 @@ import bookmarkIcon from "../../public/assets/images/icon-nav-bookmark.svg";
 import searchIcon from "../../public/assets/images/search-icon.svg";
 import FullHomeIcon from "../../public/assets/images/icon-home-full.svg";
 import TrendingSlider from "./TrendingSlider";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 export default function NavBar() {
   const location = useLocation();
   const locationPath = location.pathname;
@@ -20,19 +20,25 @@ export default function NavBar() {
           </div>
           <nav className="h-14 w-full justify-center">
             <ul className="flex gap-x-6 justify-center pt-5 items-center">
-              <li>
-                {" "}
-                <img src={locationPath !== "/home" ? homeIcon : FullHomeIcon} />
-              </li>
+              <Link to={"/home"}>
+                <li>
+                  {" "}
+                  <img
+                    src={locationPath !== "/home" ? homeIcon : FullHomeIcon}
+                  />
+                </li>
+              </Link>
               <li>
                 <img src={movieIcon} />
               </li>
               <li>
                 <img src={seriesIcon} />
               </li>
-              <li>
-                <img src={bookmarkIcon} />
-              </li>
+              <Link to={"/bookmark"}>
+                <li>
+                  <img src={bookmarkIcon} />
+                </li>
+              </Link>
             </ul>
           </nav>
           <div className=" w-6 h-6 absolute right-4">

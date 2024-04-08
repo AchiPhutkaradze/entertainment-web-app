@@ -2,6 +2,9 @@ import data from "../../public/data.json";
 import moviesIcon from "../../public/assets/images/icon-nav-movies.svg";
 import seriesIcon from "../../public/assets/images/icon-nav-tv-series.svg";
 import bookmarkIcon from "../../public/assets/images/icon-bookmark-empty-.svg";
+import bookmarkIconFull from "../../public/assets/images/icon-bookmark-full.svg";
+
+import { useState } from "react";
 
 type ThumbnailType = {
   trending?: {
@@ -23,11 +26,14 @@ type dataType = {
   isBookmarked: boolean;
   isTrending: boolean;
 };
-
-export default function Home() {
+interface HomeProps {
+  toogleBkmark: (index: number) => void;
+}
+export default function Home({ toogleBkmark }: HomeProps) {
   const filteredData: dataType[] = data.filter(
     (item) => item.isTrending === false
   );
+
   return (
     <div className="pl-4 pt-6 pr-6 bg-darkBlue">
       <div>
@@ -36,9 +42,9 @@ export default function Home() {
         </h2>
       </div>
       <div className=" grid grid-cols-2 pt-6 gap-4">
-        {filteredData.map((item: dataType) => {
+        {filteredData.map((item: dataType, index) => {
           return (
-            <div key={item.title} className="relative">
+            <div key={index} className="relative">
               <div>
                 <img
                   className="w-full  rounded-lg"
@@ -60,7 +66,14 @@ export default function Home() {
               </div>
               <div className="text-white">{item.title}</div>
               <div className="w-8 h-8 bg-darkBlue opacity-circleOpacity absolute top-2 right-2 rounded-2xl flex items-center justify-center ">
-                <img src={bookmarkIcon} />
+                <img
+                  src={
+                    item.isBookmarked === false
+                      ? bookmarkIcon
+                      : bookmarkIconFull
+                  }
+                  onClick={() => toogleBkmark(index)}
+                />
               </div>
             </div>
           );

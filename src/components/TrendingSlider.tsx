@@ -11,7 +11,6 @@ export default function TrendingSlider() {
       return item.thumbnail.trending?.small;
     })
   );
-
   const settings = {
     responsive: [
       {
@@ -20,7 +19,7 @@ export default function TrendingSlider() {
           dots: true,
           infinite: false,
           slidesToShow: 1.5,
-          slidesToScroll: 1,
+          slidesToScroll: 1,  
           autoplay: false,
           cssEase: "linear",
           arrows: false,
@@ -58,7 +57,7 @@ export default function TrendingSlider() {
                 <div className="text-white">{item.title}</div>
               </div>
               <div className="w-8 h-8 bg-darkBlue opacity-circleOpacity absolute top-2 right-2 rounded-2xl flex items-center justify-center ">
-                <img src={bookmarkIcon} />
+                <img src={bookmarkIcon}  />
               </div>
             </div>
           ))}
