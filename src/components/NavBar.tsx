@@ -6,7 +6,6 @@ import seriesIcon from "../../public/assets/images/icon-nav-tv-series.svg";
 import bookmarkIcon from "../../public/assets/images/icon-nav-bookmark.svg";
 import searchIcon from "../../public/assets/images/search-icon.svg";
 import FullHomeIcon from "../../public/assets/images/icon-home-full.svg";
-import TrendingSlider from "./TrendingSlider";
 import { Link, useLocation } from "react-router-dom";
 export default function NavBar() {
   const location = useLocation();
@@ -56,7 +55,6 @@ export default function NavBar() {
           />
         </div>
       </div>
-      <TrendingSlider />
     </>
   );
 }

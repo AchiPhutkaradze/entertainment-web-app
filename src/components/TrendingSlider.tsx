@@ -16,7 +16,7 @@ export default function TrendingSlider() {
       {
         breakpoint: 700,
         settings: {
-          dots: true,
+          dots: false,
           infinite: false,
           slidesToShow: 1.5,
           slidesToScroll: 1,  
