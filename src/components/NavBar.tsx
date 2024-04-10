@@ -28,9 +28,11 @@ export default function NavBar() {
                   />
                 </li>
               </Link>
-              <li>
-                <img src={movieIcon} />
-              </li>
+              <Link to={"/movies"}>
+                <li>
+                  <img src={movieIcon} />
+                </li>
+              </Link>
               <li>
                 <img src={seriesIcon} />
               </li>

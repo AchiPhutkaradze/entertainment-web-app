@@ -2,28 +2,36 @@ import Data from "../../public/data.json";
 import moviesIcon from "../../public/assets/images/icon-nav-movies.svg";
 import seriesIcon from "../../public/assets/images/icon-nav-tv-series.svg";
 import bookmarkIconFull from "../../public/assets/images/icon-bookmark-full.svg";
+import bookmarkIcon from "../../public/assets/images/icon-bookmark-empty-.svg";
 import { useState } from "react";
 import { DataType } from "../types/Types";
 
-export default function Bookmarked() {
+export default function Movies() {
   const filteredData = Data.filter((item) => {
-    return item.isBookmarked === true;
+    return item.category === "Movie" && item.isTrending !== true;
   });
-  const [data, setData] = useState(filteredData);
-  const removeItem = (index: number) => {
-    const updateData = [...data];
-    updateData.splice(index, 1);
-    setData(updateData);
+  const [dataItems, setDataItems] = useState(filteredData);
+
+  const toogleBkmark = (index: number) => {
+    const updateItems = [...dataItems];
+    updateItems[index].isBookmarked = !updateItems[index].isBookmarked;
+    setDataItems(updateItems);
   };
+
   return (
     <div className=" h-lvh bg-darkBlue">
       <div className="bg-darkBlue pl-4 pr-4 ">
+        <div className=" pt-6">
+          <h1 className="text-[20px] text-white font-normal leading-6">
+            Movies
+          </h1>
+        </div>
         <div className=" grid grid-cols-2 pt-6 gap-4">
-          {data.map((item: DataType, index) => {
+          {filteredData.map((item: DataType, index) => {
             return (
               <div key={index} className="relative">
                 <div>
-                  <img  
+                  <img
                     className="w-full  rounded-lg"
                     src={item.thumbnail.regular.small}
                   />
@@ -44,8 +52,12 @@ export default function Bookmarked() {
                 <div className="text-white">{item.title}</div>
                 <div className="w-8 h-8 bg-darkBlue opacity-circleOpacity absolute top-2 right-2 rounded-2xl flex items-center justify-center ">
                   <img
-                    src={bookmarkIconFull}
-                    onClick={() => removeItem(index)}
+                    onClick={() => toogleBkmark(index)}
+                    src={
+                      item.isBookmarked === true
+                        ? bookmarkIconFull
+                        : bookmarkIcon
+                    }
                   />
                 </div>
               </div>

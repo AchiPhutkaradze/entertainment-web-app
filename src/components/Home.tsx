@@ -3,34 +3,21 @@ import moviesIcon from "../../public/assets/images/icon-nav-movies.svg";
 import seriesIcon from "../../public/assets/images/icon-nav-tv-series.svg";
 import bookmarkIcon from "../../public/assets/images/icon-bookmark-empty-.svg";
 import bookmarkIconFull from "../../public/assets/images/icon-bookmark-full.svg";
+import { useState } from "react";
+import { DataType } from "../types/Types";
 
-type ThumbnailType = {
-  trending?: {
-    small: string;
-    large: string;
-  };
-  regular: {
-    small: string;
-    medium: string;
-    large: string;
-  };
-};
-type dataType = {
-  title: string;
-  thumbnail: ThumbnailType;
-  year: number;
-  category: string;
-  rating: string;
-  isBookmarked: boolean;
-  isTrending: boolean;
-};
-interface HomeProps {
-  toogleBkmark: (index: number) => void;
-}
-export default function Home({ toogleBkmark }: HomeProps) {
-  const filteredData: dataType[] = data.filter(
+export default function Home() {
+  const filteredData: DataType[] = data.filter(
     (item) => item.isTrending === false
   );
+
+  const [dataItems, setDataItems] = useState(filteredData);
+
+  const toogleBkmark = (index: number) => {
+    const updateItems = [...dataItems];
+    updateItems[index].isBookmarked = !updateItems[index].isBookmarked;
+    setDataItems(updateItems);
+  };
 
   return (
     <div className="pl-4 pt-6 pr-6 bg-darkBlue">
@@ -40,7 +27,7 @@ export default function Home({ toogleBkmark }: HomeProps) {
         </h2>
       </div>
       <div className=" grid grid-cols-2 pt-6 gap-4">
-        {filteredData.map((item: dataType, index) => {
+        {filteredData.map((item: DataType, index) => {
           return (
             <div key={index} className="relative">
               <div>
