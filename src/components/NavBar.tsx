@@ -32,9 +32,11 @@ export default function NavBar() {
                   <img src={movieIcon} />
                 </li>
               </Link>
-              <li>
-                <img src={seriesIcon} />
-              </li>
+              <Link to={"/series"}>
+                <li>
+                  <img src={seriesIcon} />
+                </li>
+              </Link>
               <Link to={"/bookmark"}>
                 <li>
                   <img src={bookmarkIcon} />
