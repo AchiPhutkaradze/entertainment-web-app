@@ -10,6 +10,8 @@
 }
 body {
   font-family: "Outfit";
+  height: 100vh;
+  background-color: #10141e;
 }
 .slick-slide > div {
   margin: 0 10px;

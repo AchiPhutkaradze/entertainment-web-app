@@ -7,9 +7,12 @@ import bookmarkIcon from "../../public/assets/images/icon-nav-bookmark.svg";
 import searchIcon from "../../public/assets/images/search-icon.svg";
 import FullHomeIcon from "../../public/assets/images/icon-home-full.svg";
 import { Link, useLocation } from "react-router-dom";
-export default function NavBar() {
+export default function NavBar(props: {
+  setInputValue: React.Dispatch<React.SetStateAction<string>>;
+}) {
   const location = useLocation();
   const locationPath = location.pathname;
+
   return (
     <>
       <div className="bg-darkBlue">
@@ -52,6 +55,7 @@ export default function NavBar() {
           <img src={searchIcon} />
           <input
             type="text"
+            onChange={(e) => props.setInputValue(e.target.value)}
             placeholder="Search for movies or TV series"
             className=" outline-none bg-darkBlue text-white"
           />
