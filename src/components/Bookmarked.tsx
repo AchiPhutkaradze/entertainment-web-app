@@ -4,14 +4,20 @@ import seriesIcon from "../../public/assets/images/icon-nav-tv-series.svg";
 import bookmarkIconFull from "../../public/assets/images/icon-bookmark-full.svg";
 import { useState } from "react";
 import { DataType } from "../types/Types";
-
-export default function Bookmarked() {
+type inputValue = {
+  inputValue: string;
+};
+export default function Bookmarked(props: inputValue) {
   //filtered Movies
   const filteredMovies = Data.filter((item) => {
     return item.isBookmarked === true && item.category === "Movie";
   });
+  // search functionality for movies
+  const movies = filteredMovies.filter((item) => {
+    return item.title.includes(props.inputValue);
+  });
   //remove functionality for Movies
-  const [moviesData, setMoviesData] = useState(filteredMovies);
+  const [moviesData, setMoviesData] = useState(movies);
   const removeItem = (index: number) => {
     const updateData = [...moviesData];
     updateData.splice(index, 1);
@@ -22,8 +28,12 @@ export default function Bookmarked() {
   const filteredSeries = Data.filter((item) => {
     return item.isBookmarked === true && item.category === "TV Series";
   });
+  //search functionality for tv series
+  const tvSeries = filteredSeries.filter((item) => {
+    return item.title.includes(props.inputValue);
+  });
   //remove functionality for tv series
-  const [SeriesData, setSeriesData] = useState(filteredSeries);
+  const [SeriesData, setSeriesData] = useState(tvSeries);
   const removeSeries = (index: number) => {
     const updateData = [...SeriesData];
     updateData.splice(index, 1);
@@ -36,12 +46,18 @@ export default function Bookmarked() {
           <div className="pt-6 pl-4">
             <h1 className="text-[20px] text-white">Bookmarked Movies</h1>
           </div>
+        ) : props.inputValue.length >= 1 ? (
+          <h1 className="text-[20px] text-white">
+            {" "}
+            Found {movies.length + tvSeries.length} results for '
+            {props.inputValue}'
+          </h1>
         ) : (
           ""
         )}
         <div className="bg-darkBlue pl-4 pr-4 ">
           <div className=" grid grid-cols-2 pt-6 gap-4">
-            {moviesData.map((item: DataType, index) => {
+            {movies.map((item: DataType, index) => {
               return (
                 <div key={index} className="relative">
                   <div>
@@ -77,7 +93,7 @@ export default function Bookmarked() {
             })}
           </div>
         </div>
-        {SeriesData.length >= 1 ? (
+        {SeriesData.length >= 1 && props.inputValue.length < 1 ? (
           <div className="pt-6 pl-4">
             <h1 className="text-[20px] text-white">Bookmarked TV Series</h1>
           </div>
@@ -86,7 +102,7 @@ export default function Bookmarked() {
         )}
         <div className="bg-darkBlue pl-4 pr-4 ">
           <div className=" grid grid-cols-2 pt-6 gap-4">
-            {SeriesData.map((item: DataType, index) => {
+            {tvSeries.map((item: DataType, index) => {
               return (
                 <div key={index} className="relative">
                   <div>

@@ -6,7 +6,10 @@ import bookmarkIcon from "../../public/assets/images/icon-bookmark-empty-.svg";
 import { useState } from "react";
 import { DataType } from "../types/Types";
 
-export default function Movies() {
+type inputValue = {
+  inputValue: string;
+};
+export default function Movies(props: inputValue) {
   const filteredData = Data.filter((item) => {
     return item.category === "Movie" && item.isTrending !== true;
   });
@@ -17,17 +20,22 @@ export default function Movies() {
     updateItems[index].isBookmarked = !updateItems[index].isBookmarked;
     setDataItems(updateItems);
   };
-
+  //search functionality
+  const films = filteredData.filter((item) => {
+    return item.title.includes(props.inputValue);
+  });
   return (
     <div className=" h-lvh bg-darkBlue">
       <div className="bg-darkBlue pl-4 pr-4 ">
         <div className=" pt-6">
           <h1 className="text-[20px] text-white font-normal leading-6">
-            Movies
+            {props.inputValue.length >= 1
+              ? `Found ${films.length} results for \`${props.inputValue}\``
+              : "Movies"}
           </h1>
         </div>
         <div className=" grid grid-cols-2 pt-6 gap-4">
-          {filteredData.map((item: DataType, index) => {
+          {films.map((item: DataType, index) => {
             return (
               <div key={index} className="relative">
                 <div>

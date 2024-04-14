@@ -5,8 +5,10 @@ import bookmarkIconFull from "../../public/assets/images/icon-bookmark-full.svg"
 import bookmarkIcon from "../../public/assets/images/icon-bookmark-empty-.svg";
 import { useState } from "react";
 import { DataType } from "../types/Types";
-
-export default function Series() {
+type inputValue = {
+  inputValue: string;
+};
+export default function Series(props: inputValue) {
   const filteredData = Data.filter((item) => {
     return item.category === "TV Series" && item.isTrending !== true;
   });
@@ -17,17 +19,21 @@ export default function Series() {
     updateItems[index].isBookmarked = !updateItems[index].isBookmarked;
     setDataItems(updateItems);
   };
-
+  const tvSeries = filteredData.filter((item) => {
+    return item.title.includes(props.inputValue);
+  });
   return (
     <div className=" h-lvh bg-darkBlue">
       <div className="bg-darkBlue pl-4 pr-4 ">
         <div className=" pt-6">
           <h1 className="text-[20px] text-white font-normal leading-6">
-            TV Series{" "}
+            {props.inputValue.length >= 1
+              ? `Found ${tvSeries.length} results for \`${props.inputValue}\``
+              : "TV Series"}
           </h1>
         </div>
         <div className=" grid grid-cols-2 pt-6 gap-4">
-          {filteredData.map((item: DataType, index) => {
+          {tvSeries.map((item: DataType, index) => {
             return (
               <div key={index} className="relative">
                 <div>

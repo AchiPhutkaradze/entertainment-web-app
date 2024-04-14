@@ -16,9 +16,9 @@ function App() {
       <Route path="/register" element={<Register />} />
       <Route element={<NavbarLayout setInputValue={setInputValue} />}>
         <Route path="/home" element={<Home inputValue={inputValue} />} />
-        <Route path="/bookmark" element={<Bookmarked />} />
-        <Route path="/movies" element={<Movies />} />
-        <Route path="/series" element={<Series />} />
+        <Route path="/bookmark" element={<Bookmarked inputValue={inputValue} />} />
+        <Route path="/movies" element={<Movies inputValue={inputValue} />} />
+        <Route path="/series" element={<Series inputValue={inputValue} />} />
       </Route>
     </Routes>
   );

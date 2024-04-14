@@ -1,4 +1,4 @@
-import data from "../../public/data.json";
+import Data from "../../public/data.json";
 import moviesIcon from "../../public/assets/images/icon-nav-movies.svg";
 import seriesIcon from "../../public/assets/images/icon-nav-tv-series.svg";
 import bookmarkIcon from "../../public/assets/images/icon-bookmark-empty-.svg";
@@ -8,11 +8,9 @@ import { DataType } from "../types/Types";
 import TrendingSlider from "./TrendingSlider";
 
 export default function Home(props: { inputValue: string }) {
-  const filteredData: DataType[] = data.filter(
-    (item) => item.isTrending === false
-  );
+  const data: DataType[] = Data.filter((item) => item.isTrending === false);
 
-  const [dataItems, setDataItems] = useState(filteredData);
+  const [dataItems, setDataItems] = useState(data);
 
   //function for add film to bookmark
   const toogleBkmark = (index: number) => {
@@ -20,11 +18,10 @@ export default function Home(props: { inputValue: string }) {
     updateItems[index].isBookmarked = !updateItems[index].isBookmarked;
     setDataItems(updateItems);
   };
-
-  const searchResult = filteredData.filter((item) => {
+  //search functionality
+  const filteredData = data.filter((item) => {
     return item.title.includes(props.inputValue);
   });
-  console.log(searchResult);
   return (
     <>
       {props.inputValue.length < 1 && <TrendingSlider />}
@@ -33,12 +30,12 @@ export default function Home(props: { inputValue: string }) {
           <h2 className=" font-normal text-white text-[20px] leading-6 whitespace-nowrap	">
             {props.inputValue.length === 0
               ? "Recommended for you"
-              : `Found ${searchResult.length} results for \`${props.inputValue}\``}
+              : `Found ${filteredData.length} results for \`${props.inputValue}\``}
           </h2>
         </div>
         <div className="">
-          <div className=" grid grid-cols-2 pt-6 gap-4">npm 
-            {searchResult.map((item: DataType, index) => {
+          <div className=" grid grid-cols-2 pt-6 gap-4">
+            {filteredData.map((item: DataType, index) => {
               return (
                 <div key={index} className="relative">
                   <div>
