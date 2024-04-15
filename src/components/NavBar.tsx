@@ -5,7 +5,11 @@ import movieIcon from "../../public/assets/images/icon-nav-movies.svg";
 import seriesIcon from "../../public/assets/images/icon-nav-tv-series.svg";
 import bookmarkIcon from "../../public/assets/images/icon-nav-bookmark.svg";
 import searchIcon from "../../public/assets/images/search-icon.svg";
-import FullHomeIcon from "../../public/assets/images/icon-home-full.svg";
+import FullHome from "../../public/assets/images/icon-home-full.svg";
+import FullMovies from "../../public/assets/images/icon-category-movie-full.svg";
+import FullTvSeries from "../../public/assets/images/icon-category-tv-full.svg";
+import FullBookmark from "../../public/assets/images/icon-bookmark-full.svg";
+
 import { Link, useLocation } from "react-router-dom";
 export default function NavBar(props: {
   setInputValue: React.Dispatch<React.SetStateAction<string>>;
@@ -26,23 +30,35 @@ export default function NavBar(props: {
                 <li>
                   {" "}
                   <img
-                    src={locationPath !== "/home" ? homeIcon : FullHomeIcon}
+                    className="w-5 h-5"
+                    src={locationPath !== "/home" ? homeIcon : FullHome}
                   />
                 </li>
               </Link>
               <Link to={"/movies"}>
                 <li>
-                  <img src={movieIcon} />
+                  <img
+                    className="w-5 h-5"
+                    src={locationPath === "/movies" ? FullMovies : movieIcon}
+                  />
                 </li>
               </Link>
               <Link to={"/series"}>
                 <li>
-                  <img src={seriesIcon} />
+                  <img
+                    className="w-5 h-5"
+                    src={locationPath === "/series" ? FullTvSeries : seriesIcon}
+                  />
                 </li>
               </Link>
               <Link to={"/bookmark"}>
                 <li>
-                  <img src={bookmarkIcon} />
+                  <img
+                    className="w-5 h-5"
+                    src={
+                      locationPath === "/bookmark" ? FullBookmark : bookmarkIcon
+                    }
+                  />
                 </li>
               </Link>
             </ul>
