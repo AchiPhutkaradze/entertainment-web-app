@@ -4,13 +4,13 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import bookmarkIcon from "../../public/assets/images/icon-bookmark-empty-.svg";
+import bookmarkIconFull from "../../public/assets/images/icon-bookmark-full.svg";
 
 export default function TrendingSlider() {
-  const [trending, _setTrending] = useState(
-    data.filter((item) => {
-      return item.thumbnail.trending?.small;
-    })
-  );
+  const trending = data.filter((item) => {
+    return item.thumbnail.trending?.small;
+  });
+
   const settings = {
     responsive: [
       {
@@ -37,6 +37,13 @@ export default function TrendingSlider() {
       },
     ],
   };
+  const [_dataItems, setDataItems] = useState(trending);
+
+  const toogleBkmark = (index: number) => {
+    const updateItems = [...trending];
+    updateItems[index].isBookmarked = !updateItems[index].isBookmarked;
+    setDataItems(updateItems);
+  };
   return (
     <>
       <div className="overflow-hidden bg-darkBlue pl-4 pt-6">
@@ -56,8 +63,15 @@ export default function TrendingSlider() {
                 </div>
                 <div className="text-white">{item.title}</div>
               </div>
-              <div className="w-8 h-8 bg-darkBlue opacity-circleOpacity absolute top-2 right-2 rounded-2xl flex items-center justify-center ">
-                <img src={bookmarkIcon} />
+              <div
+                onClick={() => toogleBkmark(index)}
+                className="w-8 h-8 bg-darkBlue opacity-circleOpacity absolute top-2 right-2 rounded-2xl flex items-center justify-center "
+              >
+                <img
+                  src={
+                    item.isBookmarked === true ? bookmarkIconFull : bookmarkIcon
+                  }
+                />{" "}
               </div>
             </div>
           ))}
