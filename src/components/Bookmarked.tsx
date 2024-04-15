@@ -8,48 +8,51 @@ type inputValue = {
   inputValue: string;
 };
 export default function Bookmarked(props: inputValue) {
-  //filtered Movies
+  // filtered movies
   const filteredMovies = Data.filter((item) => {
     return item.isBookmarked === true && item.category === "Movie";
   });
-  // search functionality for movies
-  const movies = filteredMovies.filter((item) => {
+  const [_moviesData, setMoviesData] = useState(filteredMovies);
+
+  //search functionality movies
+  const searchedMovies = filteredMovies.filter((item) => {
     return item.title.includes(props.inputValue);
   });
-  //remove functionality for Movies
-  const [moviesData, setMoviesData] = useState(movies);
+
+  // Function to remove a movie from the list
   const removeItem = (index: number) => {
-    const updateData = [...moviesData];
-    updateData.splice(index, 1);
-    setMoviesData(updateData);
+    const updatedMovies = [...searchedMovies];
+    updatedMovies[index].isBookmarked = false;
+    setMoviesData(updatedMovies);
   };
-  console.log(moviesData);
+
   // filtered Tv series
   const filteredSeries = Data.filter((item) => {
     return item.isBookmarked === true && item.category === "TV Series";
   });
+  const [_SeriesData, setSeriesData] = useState(filteredSeries);
+
   //search functionality for tv series
   const tvSeries = filteredSeries.filter((item) => {
     return item.title.includes(props.inputValue);
   });
   //remove functionality for tv series
-  const [SeriesData, setSeriesData] = useState(tvSeries);
   const removeSeries = (index: number) => {
-    const updateData = [...SeriesData];
-    updateData.splice(index, 1);
-    setSeriesData(updateData);
+    const updatedSeries = [...tvSeries];
+    updatedSeries[index].isBookmarked = false;
+    setSeriesData(updatedSeries);
   };
   return (
     <>
       <div className=" h-lvh bg-darkBlue">
-        {moviesData.length >= 1 ? (
+        {filteredMovies.length >= 1 ? (
           <div className="pt-6 pl-4">
             <h1 className="text-[20px] text-white">Bookmarked Movies</h1>
           </div>
-        ) : props.inputValue.length >= 1 ? (
+        ) : props.inputValue.length > 1 ? (
           <h1 className="text-[20px] text-white">
             {" "}
-            Found {movies.length + tvSeries.length} results for '
+            Found {searchedMovies.length + tvSeries.length} results for '
             {props.inputValue}'
           </h1>
         ) : (
@@ -57,7 +60,7 @@ export default function Bookmarked(props: inputValue) {
         )}
         <div className="bg-darkBlue pl-4 pr-4 ">
           <div className=" grid grid-cols-2 pt-6 gap-4">
-            {movies.map((item: DataType, index) => {
+            {searchedMovies.map((item: DataType, index) => {
               return (
                 <div key={index} className="relative">
                   <div>
@@ -93,7 +96,7 @@ export default function Bookmarked(props: inputValue) {
             })}
           </div>
         </div>
-        {SeriesData.length >= 1 && props.inputValue.length < 1 ? (
+        {tvSeries.length >= 1 && props.inputValue.length < 1 ? (
           <div className="pt-6 pl-4">
             <h1 className="text-[20px] text-white">Bookmarked TV Series</h1>
           </div>
