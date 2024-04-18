@@ -34,8 +34,14 @@ function App() {
           path="/bookmark"
           element={<Bookmarked inputValue={inputValue} />}
         />
-        <Route path="/movies" element={<Movies inputValue={inputValue} />} />
-        <Route path="/series" element={<Series inputValue={inputValue} />} />
+        <Route
+          path="/movies"
+          element={<Movies inputValue={inputValue} resolution={resolution} />}
+        />
+        <Route
+          path="/series"
+          element={<Series inputValue={inputValue} resolution={resolution} />}
+        />
       </Route>
     </Routes>
   );

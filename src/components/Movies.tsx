@@ -6,10 +6,11 @@ import bookmarkIcon from "../../public/assets/images/icon-bookmark-empty-.svg";
 import { useState } from "react";
 import { DataType } from "../types/Types";
 
-type inputValue = {
+type Types = {
   inputValue: string;
+  resolution: number;
 };
-export default function Movies(props: inputValue) {
+export default function Movies(props: Types) {
   const filteredData = Data.filter((item) => {
     return item.category === "Movie" && item.isTrending !== true;
   });
@@ -26,26 +27,33 @@ export default function Movies(props: inputValue) {
   });
   return (
     <div className=" h-lvh bg-darkBlue">
-      <div className="bg-darkBlue pl-4 pr-4 ">
-        <div className=" pt-6">
-          <h1 className="text-[20px] text-white font-normal leading-6">
+      <div className="bg-darkBlue pl-4 pr-4 md:pl-[25px] md:pr-6 pb-[60px]">
+        <div className=" pt-6 md:pt[33px]">
+          <h1 className="text-[20px] text-white font-normal leading-6 md:text-[32px]">
             {props.inputValue.length >= 1
               ? `Found ${films.length} results for \`${props.inputValue}\``
               : "Movies"}
           </h1>
         </div>
-        <div className=" grid grid-cols-2 pt-6 gap-4">
+        <div className=" grid grid-cols-2 pt-6 gap-4 md:grid-cols-3 md:gap-y-[24px] md:gap-x-[29px] md:gap-0">
           {films.map((item: DataType, index) => {
             return (
               <div key={index} className="relative">
                 <div>
                   <img
                     className="w-full  rounded-lg"
-                    src={item.thumbnail.regular.small}
+                    src={
+                      props.resolution < 768
+                        ? item.thumbnail.regular.small
+                        : item.thumbnail.regular.medium
+                    }
                   />
                 </div>
                 <div className="flex items-center  gap-x-2 text-white opacity-textOpacity pt-2">
-                  {item.year} .{" "}
+                  {item.year}{" "}
+                  <span className="relative bottom-1 text-white text-[20px]">
+                    .
+                  </span>{" "}
                   <div className="flex gap-1 items-center">
                     {" "}
                     <img
@@ -55,10 +63,15 @@ export default function Movies(props: inputValue) {
                     />{" "}
                     {item.category}
                   </div>
-                  . {item.rating}
+                  <span className="relative bottom-1 text-white text-[20px]">
+                    .
+                  </span>{" "}
+                  {item.rating}
                 </div>
-                <div className="text-white">{item.title}</div>
-                <div className="w-8 h-8 bg-darkBlue opacity-circleOpacity absolute top-2 right-2 rounded-2xl flex items-center justify-center ">
+                <div className="text-white md:text-[18px] font-normal">
+                  {item.title}
+                </div>
+                <div className="w-8 h-8 bg-darkBlue opacity-circleOpacity absolute top-2 right-2 rounded-2xl flex items-center justify-center md:top-4 md:right-4 ">
                   <img
                     onClick={() => toogleBkmark(index)}
                     src={
