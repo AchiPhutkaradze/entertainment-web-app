@@ -7,7 +7,10 @@ import { useState } from "react";
 import { DataType } from "../types/Types";
 import TrendingSlider from "./TrendingSlider";
 
-export default function Home(props: { inputValue: string }) {
+export default function Home(props: {
+  inputValue: string;
+  resolution: number;
+}) {
   const data: DataType[] = Data.filter((item) => item.isTrending === false);
 
   const [dataItems, setDataItems] = useState(data);
@@ -24,7 +27,7 @@ export default function Home(props: { inputValue: string }) {
   });
   return (
     <>
-      {props.inputValue.length < 1 && <TrendingSlider />}
+      {props.inputValue.length < 1 && <TrendingSlider resolution = {props.resolution} />}
       <div className="pl-4 pt-6 pr-6">
         <div>
           <h2 className=" font-normal text-white text-[20px] leading-6 whitespace-nowrap	">

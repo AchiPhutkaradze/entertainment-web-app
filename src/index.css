@@ -19,3 +19,13 @@ body {
 .slick-list {
   padding: 0 20% 0 0 !important;
 }
+@media screen and (min-width: 768px) {
+  .slick-slider.slick-initialized {
+    height: 295px;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .slick-slider.slick-initialized {
+    height: 350px;
+  }
+}

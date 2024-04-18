@@ -6,7 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import bookmarkIcon from "../../public/assets/images/icon-bookmark-empty-.svg";
 import bookmarkIconFull from "../../public/assets/images/icon-bookmark-full.svg";
 
-export default function TrendingSlider() {
+export default function TrendingSlider(props: { resolution: number }) {
   const trending = data.filter((item) => {
     return item.thumbnail.trending?.small;
   });
@@ -14,7 +14,7 @@ export default function TrendingSlider() {
   const settings = {
     responsive: [
       {
-        breakpoint: 700,
+        breakpoint: 1440,
         settings: {
           dots: false,
           infinite: false,
@@ -24,15 +24,6 @@ export default function TrendingSlider() {
           cssEase: "linear",
           arrows: false,
           variableWidth: false,
-        },
-      },
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-          initialSlide: 1,
-          arrows: false,
         },
       },
     ],
@@ -47,25 +38,31 @@ export default function TrendingSlider() {
   return (
     <>
       <div className="overflow-hidden bg-darkBlue pl-4 pt-6">
-        <div className="pb-5">
-          <h1 className="text-white size-5 leading-6">Trending</h1>
+        <div className="pb-5 md:pb-[25px]">
+          <h1 className="text-white size-5 leading-6 md:text-[32px] font-extralight	">
+            Trending
+          </h1>
         </div>
         <Slider {...settings}>
           {trending.map((item, index) => (
             <div className="overflow-hidden rounded-lg relative" key={index}>
               <img
-                className="w-full rounded-lg"
-                src={item.thumbnail.trending?.small}
+                className="w-full rounded-lg md:h-[295px] lg:h-[350px]"
+                src={
+                  props.resolution < 768
+                    ? item.thumbnail.trending?.small
+                    : item.thumbnail.trending?.large
+                }
               />
-              <div className="absolute bottom-4 left-4">
+              <div className="absolute bottom-4 left-4 md:left-6 md:bottom-6">
                 <div className="text-white">
                   {item.year} . {item.category} . {item.rating}
                 </div>
-                <div className="text-white">{item.title}</div>
+                <div className="text-white md:text-[24px]">{item.title}</div>
               </div>
               <div
                 onClick={() => toogleBkmark(index)}
-                className="w-8 h-8 bg-darkBlue opacity-circleOpacity absolute top-2 right-2 rounded-2xl flex items-center justify-center "
+                className="w-8 h-8 bg-darkBlue opacity-circleOpacity absolute top-2 right-2 rounded-2xl flex items-center justify-center md:top-4 md:right-6 "
               >
                 <img
                   src={
