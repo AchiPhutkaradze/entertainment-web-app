@@ -32,7 +32,9 @@ function App() {
         />
         <Route
           path="/bookmark"
-          element={<Bookmarked inputValue={inputValue} />}
+          element={
+            <Bookmarked inputValue={inputValue} resolution={resolution} />
+          }
         />
         <Route
           path="/movies"

@@ -38,59 +38,55 @@ export default function Home(props: {
               : `Found ${filteredData.length} results for \`${props.inputValue}\``}
           </h2>
         </div>
-        <div className="">
-          <div className=" grid grid-cols-2 pt-6 gap-4 md:grid-cols-3 md:gap-y-[24px] md:gap-x-[29px] md:gap-0 ">
-            {filteredData.map((item: DataType, index) => {
-              return (
-                <div key={index} className="relative">
-                  <div>
-                    <img
-                      className="w-full  rounded-lg"
-                      src={
-                        props.resolution < 768
-                          ? item.thumbnail.regular.small
-                          : item.thumbnail.regular.medium
-                      }
-                    />
-                  </div>
-                  <div className="flex items-center  gap-x-2 text-white opacity-textOpacity pt-2 ">
-                    {item.year}{" "}
-                    <span className="relative bottom-1 text-white text-[20px]">
-                      .
-                    </span>{" "}
-                    <div className="flex gap-1 items-center">
-                      {" "}
-                      <img
-                        className=" w-3 h-3"
-                        src={
-                          item.category === "Movie" ? moviesIcon : seriesIcon
-                        }
-                        alt=""
-                      />{" "}
-                      {item.category}
-                    </div>
-                    <span className="relative bottom-1 text-white text-[20px]">
-                      .
-                    </span>{" "}
-                    {item.rating}
-                  </div>
-                  <div className="text-white md:text-[18px] font-normal">
-                    {item.title}
-                  </div>
-                  <div className="w-8 h-8 bg-darkBlue opacity-circleOpacity absolute top-2 right-2 rounded-2xl flex items-center justify-center md:top-4 md:right-4 ">
-                    <img
-                      onClick={() => toogleBkmark(index)}
-                      src={
-                        item.isBookmarked === true
-                          ? bookmarkIconFull
-                          : bookmarkIcon
-                      }
-                    />
-                  </div>
+        <div className=" grid grid-cols-2 pt-6 gap-4 md:grid-cols-3 md:gap-y-[24px] md:gap-x-[29px] md:gap-0 ">
+          {filteredData.map((item: DataType, index) => {
+            return (
+              <div key={index} className="relative">
+                <div>
+                  <img
+                    className="w-full  rounded-lg"
+                    src={
+                      props.resolution < 768
+                        ? item.thumbnail.regular.small
+                        : item.thumbnail.regular.medium
+                    }
+                  />
                 </div>
-              );
-            })}
-          </div>
+                <div className="flex items-center gap-x-2 text-white opacity-textOpacity pt-2 ">
+                  {item.year}{" "}
+                  <span className="relative bottom-1 text-white text-[20px]">
+                    .
+                  </span>{" "}
+                  <div className="flex gap-1 items-center">
+                    {" "}
+                    <img
+                      className="w-3 h-3"
+                      src={item.category === "Movie" ? moviesIcon : seriesIcon}
+                      alt=""
+                    />{" "}
+                    {item.category}
+                  </div>
+                  <span className="relative bottom-1 text-white text-[20px]">
+                    .
+                  </span>{" "}
+                  {item.rating}
+                </div>
+                <div className="text-white md:text-[18px] font-normal">
+                  {item.title}
+                </div>
+                <div className="w-8 h-8 bg-darkBlue opacity-circleOpacity absolute top-2 right-2 rounded-2xl flex items-center justify-center md:top-4 md:right-4 ">
+                  <img
+                    onClick={() => toogleBkmark(index)}
+                    src={
+                      item.isBookmarked === true
+                        ? bookmarkIconFull
+                        : bookmarkIcon
+                    }
+                  />
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </>

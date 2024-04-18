@@ -6,6 +6,7 @@ import { useState } from "react";
 import { DataType } from "../types/Types";
 type inputValue = {
   inputValue: string;
+  resolution: number;
 };
 export default function Bookmarked(props: inputValue) {
   // filtered movies
@@ -44,101 +45,107 @@ export default function Bookmarked(props: inputValue) {
   };
   return (
     <>
-      <div className=" h-lvh bg-darkBlue">
-        {filteredMovies.length >= 1 ? (
-          <div className="pt-6 pl-4">
-            <h1 className="text-[20px] text-white">Bookmarked Movies</h1>
-          </div>
-        ) : props.inputValue.length > 1 ? (
-          <h1 className="text-[20px] text-white">
-            {" "}
-            Found {searchedMovies.length + tvSeries.length} results for '
-            {props.inputValue}'
-          </h1>
-        ) : (
-          ""
-        )}
-        <div className="bg-darkBlue pl-4 pr-4 ">
-          <div className=" grid grid-cols-2 pt-6 gap-4">
-            {searchedMovies.map((item: DataType, index) => {
-              return (
-                <div key={index} className="relative">
-                  <div>
-                    <img
-                      className="w-full  rounded-lg"
-                      src={item.thumbnail.regular.small}
-                    />
-                  </div>
-                  <div className="flex items-center  gap-x-2 text-white opacity-textOpacity pt-2">
-                    {item.year} .{" "}
-                    <div className="flex gap-1 items-center">
-                      {" "}
+      <div>
+        <div className=" h-lvh bg-darkBlue">
+          {searchedMovies.length >= 1 && props.inputValue.length === 0 ? (
+            <div className="pt-6 pl-4 md:pl-[25px] md:pr-[24px">
+              <h1 className="text-[20px] text-white md:text-[32px]">
+                Bookmarked Movies
+              </h1>
+            </div>
+          ) : props.inputValue.length >= 1 ? (
+            <div className="pl-4 pt-6 md:pl-[25px] md:pr-[24px">
+              <h1 className="text-[20px] text-white md:text-[32px]">
+                {" "}
+                Found {searchedMovies.length + tvSeries.length} results for '
+                {props.inputValue}'
+              </h1>
+            </div>
+          ) : (
+            ""
+          )}
+          <div className="bg-darkBlue pl-4 pr-4 md:pl-[25px] md:pr-[24px] ">
+            <div className="grid grid-cols-2 pt-6 gap-4 md:grid-cols-3 md:gap-y-[24px] md:gap-x-[29px] md:gap-0">
+              {searchedMovies.map((item: DataType, index) => {
+                return (
+                  <div key={index} className="relative">
+                    <div>
                       <img
-                        className=" w-3 h-3"
-                        src={
-                          item.category === "Movie" ? moviesIcon : seriesIcon
-                        }
-                        alt=""
-                      />{" "}
-                      {item.category}
+                        className="w-full rounded-lg"
+                        src={item.thumbnail.regular.small}
+                      />
                     </div>
-                    . {item.rating}
-                  </div>
-                  <div className="text-white">{item.title}</div>
-                  <div className="w-8 h-8 bg-darkBlue opacity-circleOpacity absolute top-2 right-2 rounded-2xl flex items-center justify-center ">
-                    <img
-                      src={bookmarkIconFull}
-                      onClick={() => removeItem(index)}
-                    />
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-        {tvSeries.length >= 1 && props.inputValue.length < 1 ? (
-          <div className="pt-6 pl-4">
-            <h1 className="text-[20px] text-white">Bookmarked TV Series</h1>
-          </div>
-        ) : (
-          ""
-        )}
-        <div className="bg-darkBlue pl-4 pr-4 ">
-          <div className=" grid grid-cols-2 pt-6 gap-4">
-            {tvSeries.map((item: DataType, index) => {
-              return (
-                <div key={index} className="relative">
-                  <div>
-                    <img
-                      className="w-full  rounded-lg"
-                      src={item.thumbnail.regular.small}
-                    />
-                  </div>
-                  <div className="flex items-center  gap-x-2 text-white opacity-textOpacity pt-2">
-                    {item.year} .{" "}
-                    <div className="flex gap-1 items-center">
-                      {" "}
+                    <div className="flex items-center  gap-x-2 text-white opacity-textOpacity pt-2">
+                      {item.year} .{" "}
+                      <div className="flex gap-1 items-center">
+                        {" "}
+                        <img
+                          className="w-3 h-3"
+                          src={
+                            item.category === "Movie" ? moviesIcon : seriesIcon
+                          }
+                          alt=""
+                        />{" "}
+                        {item.category}
+                      </div>
+                      . {item.rating}
+                    </div>
+                    <div className="text-white">{item.title}</div>
+                    <div className="w-8 h-8 bg-darkBlue opacity-circleOpacity absolute top-2 right-2 rounded-2xl flex items-center justify-center md:top-4 md:right-4 ">
                       <img
-                        className=" w-3 h-3"
-                        src={
-                          item.category === "Movie" ? moviesIcon : seriesIcon
-                        }
-                        alt=""
-                      />{" "}
-                      {item.category}
+                        src={bookmarkIconFull}
+                        onClick={() => removeItem(index)}
+                      />
                     </div>
-                    . {item.rating}
                   </div>
-                  <div className="text-white">{item.title}</div>
-                  <div className="w-8 h-8 bg-darkBlue opacity-circleOpacity absolute top-2 right-2 rounded-2xl flex items-center justify-center ">
-                    <img
-                      src={bookmarkIconFull}
-                      onClick={() => removeSeries(index)}
-                    />
+                );
+              })}
+            </div>
+          </div>
+          {tvSeries.length >= 1 && props.inputValue.length === 0 && (
+            <div className="pt-6 pl-4 md:pl-[25px] md:pr-[24px">
+              <h1 className="text-[20px] text-white md:text-[32px]">
+                Bookmarked Movies
+              </h1>
+            </div>
+          )}
+          <div className="bg-darkBlue pl-4 pr-4 md:pl-[25px] md:pr-[24px ">
+            <div className=" grid grid-cols-2 pt-6 gap-4 md:grid-cols-3 md:gap-y-[24px] md:gap-x-[29px] md:gap-0">
+              {tvSeries.map((item: DataType, index) => {
+                return (
+                  <div key={index} className="relative">
+                    <div>
+                      <img
+                        className="w-full  rounded-lg"
+                        src={item.thumbnail.regular.small}
+                      />
+                    </div>
+                    <div className="flex items-center  gap-x-2 text-white opacity-textOpacity pt-2">
+                      {item.year} .{" "}
+                      <div className="flex gap-1 items-center">
+                        {" "}
+                        <img
+                          className=" w-3 h-3"
+                          src={
+                            item.category === "Movie" ? moviesIcon : seriesIcon
+                          }
+                          alt=""
+                        />{" "}
+                        {item.category}
+                      </div>
+                      . {item.rating}
+                    </div>
+                    <div className="text-white">{item.title}</div>
+                    <div className="w-8 h-8 bg-darkBlue opacity-circleOpacity absolute top-2 right-2 rounded-2xl flex items-center justify-center md:top-4 md:right-4 ">
+                      <img
+                        src={bookmarkIconFull}
+                        onClick={() => removeSeries(index)}
+                      />
+                    </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>
