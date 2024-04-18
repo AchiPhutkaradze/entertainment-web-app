@@ -49,13 +49,15 @@ export default function Login() {
     <div className=" h-lvh bg-bgLogin">
       <div className="flex pt-12 flex-col gap-y-14  items-center">
         <img className="w-8 h-6" src={loginIcon} alt="" />
-        <div className="w-cardWidth bg-bgLoginCard rounded-xl">
-          <div className="pl-6 pt-6">
-            <h1 className="text-white size-8 leading-10 font-light">Login</h1>
+        <div className="w-cardWidth bg-bgLoginCard rounded-xl md:w-widthTablet">
+          <div className="pl-6 pt-6 md:pt-8 md:pl-8">
+            <h1 className="text-white size-8 leading-10 font-light md:text-[32px]">
+              Login
+            </h1>
           </div>
           <form
             onSubmit={handleSubmit(onSubmit)}
-            className=" flex flex-col gap-y-6 mt-10 pl-6 pr-6"
+            className=" flex flex-col gap-y-6 mt-10 pl-6 pr-6 md:pt-8 md:pl-8"
           >
             <div className="flex relative w-full">
               <input
@@ -133,7 +135,7 @@ export default function Login() {
             <p className="text-white">
               Don’t have an account?{" "}
               <Link to={`/register`}>
-                <span className="text-rose-400">Sign Up</span>
+                <span className="text-rose-400 pl-2">Sign Up</span>
               </Link>
             </p>
           </div>

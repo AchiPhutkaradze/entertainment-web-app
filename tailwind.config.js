@@ -12,6 +12,7 @@ export default {
       },
       width: {
         cardWidth: "327px",
+        widthTablet: "400px",
       },
       colors: {
         borderBottom: "#5A698F",
