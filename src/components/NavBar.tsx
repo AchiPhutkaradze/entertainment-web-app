@@ -20,12 +20,12 @@ export default function NavBar(props: {
   return (
     <>
       <div className="bg-darkBlue">
-        <div className="flex items-center bg-bgNavBar relative">
+        <div className="flex items-center bg-bgNavBar relative md:mt-[23px] md:ml-6 md:mr-6 md:rounded-md">
           <div className="absolute left-4">
             <img src={mainIcon} />
           </div>
-          <nav className="h-14 w-full justify-center">
-            <ul className="flex gap-x-6 justify-center pt-5 items-center">
+          <nav className="h-14 w-full justify-center md:h-[72px] md:flex  ">
+            <ul className="flex gap-x-6 justify-center pt-5 items-center md:pt-0">
               <Link to={"/home"}>
                 <li>
                   {" "}
@@ -63,17 +63,17 @@ export default function NavBar(props: {
               </Link>
             </ul>
           </nav>
-          <div className=" w-6 h-6 absolute right-4">
+          <div className=" w-6 h-6 absolute right-4 md:w-8">
             <img src={avatar} />
           </div>
         </div>
-        <div className="flex gap-4 mt-6 pl-4 pb-6">
-          <img src={searchIcon} />
+        <div className="flex gap-4 mt-6 pl-4 pb-6 md:mt-[33px] md:pl-[25px]">
+          <img className="w-[32px]" src={searchIcon} />
           <input
             type="text"
             onChange={(e) => props.setInputValue(e.target.value)}
             placeholder="Search for movies or TV series"
-            className=" outline-none bg-darkBlue text-white"
+            className=" outline-none bg-darkBlue text-white font-extralight	md:text-[32px]"
           />
         </div>
       </div>
