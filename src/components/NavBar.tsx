@@ -68,12 +68,12 @@ export default function NavBar(props: {
           </div>
         </div>
         <div className="flex gap-4 mt-6 pl-4 pb-6 md:mt-[33px] md:pl-[25px]">
-          <img className="w-[32px]" src={searchIcon} />
+          <img className="md:w-[32px]" src={searchIcon} />
           <input
             type="text"
             onChange={(e) => props.setInputValue(e.target.value)}
             placeholder="Search for movies or TV series"
-            className=" outline-none bg-darkBlue text-white font-extralight	md:text-[32px]"
+            className=" outline-none bg-darkBlue text-white font-extralight	md:text-[24px] min-w-[241px] md:min-w-[321px]"
           />
         </div>
       </div>
