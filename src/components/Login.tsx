@@ -57,7 +57,7 @@ export default function Login() {
           </div>
           <form
             onSubmit={handleSubmit(onSubmit)}
-            className=" flex flex-col gap-y-6 mt-10 pl-6 pr-6 md:pt-8 md:pl-8"
+            className=" flex flex-col gap-y-6 mt-10 pl-6 pr-6 md:pl-8"
           >
             <div className="flex relative w-full">
               <input
@@ -117,7 +117,7 @@ export default function Login() {
               <Link to={`/home`}>
                 <button
                   type="submit"
-                  className=" bg-bgLoginBtn  w-full text-center pt-4 pb-4 rounded-md mt-10 text-white"
+                  className=" bg-bgLoginBtn  w-full text-center pt-4 pb-4 rounded-md mt-4 text-white"
                 >
                   Login to your account
                 </button>
@@ -125,14 +125,14 @@ export default function Login() {
             ) : (
               <button
                 type="submit"
-                className=" bg-bgLoginBtn  w-full text-center pt-4 pb-4 rounded-md mt-10 text-white"
+                className=" bg-bgLoginBtn  w-full text-center pt-4 pb-4 rounded-md mt-4 text-white font-extralight"
               >
                 Login to your account
               </button>
             )}
           </form>
           <div className="pt-6 pb-8 flex  justify-center">
-            <p className="text-white">
+            <p className="text-white leading-5 text-[15px] font-extralight">
               Don’t have an account?{" "}
               <Link to={`/register`}>
                 <span className="text-rose-400 pl-2">Sign Up</span>
