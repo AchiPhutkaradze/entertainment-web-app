@@ -30,15 +30,15 @@ export default function Home(props: {
       {props.inputValue.length < 1 && (
         <TrendingSlider resolution={props.resolution} />
       )}
-      <div className="pl-4 pt-6 pr-6 md:pt-[39px] md:pl-[25px] md:pr-6 pb-[61px] md:pb-[56px]">
+      <div className="pl-4 pt-6 pr-6 md:pt-[39px] md:pl-[25px] md:pr-6 pb-[61px] md:pb-[56px] dsk:pl-[165px] dsk:pr-[36px]">
         <div>
-          <h2 className="  text-white text-[20px] leading-6 whitespace-nowrap md:text-[32px] font-extralight">
+          <h2 className="  text-white text-[20px] leading-6 whitespace-nowrap md:text-[32px] font-light">
             {props.inputValue.length === 0
               ? "Recommended for you"
               : `Found ${filteredData.length} results for \`${props.inputValue}\``}
           </h2>
         </div>
-        <div className=" grid grid-cols-2 pt-6 gap-4 md:grid-cols-3 md:gap-y-[24px] md:gap-x-[29px] md:gap-0 ">
+        <div className=" grid grid-cols-2 pt-6 gap-4 md:grid-cols-3 md:gap-y-[24px] md:gap-x-[29px] md:gap-0 dsk:grid-cols-4 dsk:pt-8 dsk:gap-y-8 dsk:gap-x-10">
           {filteredData.map((item: DataType, index) => {
             return (
               <div key={index} className="relative">
@@ -48,11 +48,13 @@ export default function Home(props: {
                     src={
                       props.resolution < 768
                         ? item.thumbnail.regular.small
+                        : props.resolution > 1440
+                        ? item.thumbnail.regular.large
                         : item.thumbnail.regular.medium
                     }
                   />
                 </div>
-                <div className="flex items-center gap-x-2 text-white opacity-textOpacity pt-2 ">
+                <div className="flex items-center gap-x-2 text-white opacity-textOpacity pt-2">
                   {item.year}{" "}
                   <span className="relative bottom-1 text-white text-[20px]">
                     .
