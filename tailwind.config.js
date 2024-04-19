@@ -13,7 +13,6 @@ export default {
       width: {
         cardWidth: "327px",
         widthTablet: "400px",
-        
       },
       colors: {
         borderBottom: "#5A698F",
@@ -25,6 +24,10 @@ export default {
         textOpacity: "65%",
         circleOpacity: "50%",
       },
+    },
+    screens: {
+      md: "768px",
+      dsk: "1440px",
     },
   },
   plugins: [],

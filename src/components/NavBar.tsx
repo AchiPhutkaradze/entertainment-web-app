@@ -20,12 +20,12 @@ export default function NavBar(props: {
   return (
     <>
       <div className="bg-darkBlue">
-        <div className="flex items-center bg-bgNavBar relative md:mt-[23px] md:ml-6 md:mr-6 md:rounded-md">
-          <div className="absolute left-4">
+        <div className="flex items-center bg-bgNavBar relative md:mt-[23px] md:ml-6 md:mr-6 md:rounded-md dsk:h-[960px] dsk:w-[100px] dsk:absolute dsk:z-10 dsk:rounded-3xl dsk:left-8 dsk:top-8 dsk:m-0">
+          <div className="absolute left-4 dsk:top-[35px] dsk:left-8">
             <img src={mainIcon} />
           </div>
-          <nav className="h-14 w-full justify-center md:h-[72px] md:flex  ">
-            <ul className="flex gap-x-6 justify-center pt-5 items-center md:pt-0">
+          <nav className="h-14 w-full justify-center md:h-[72px] md:flex dsk:flex dsk:absolute dsk:top-[136px]">
+            <ul className="flex gap-x-6 justify-center pt-5 items-center md:pt-0 dsk:pt-0 dsk:flex-col dsk:gap-10 dsk:h-[200px]">
               <Link to={"/home"}>
                 <li>
                   {" "}
@@ -63,11 +63,11 @@ export default function NavBar(props: {
               </Link>
             </ul>
           </nav>
-          <div className=" w-6 h-6 absolute right-4 md:w-8">
+          <div className=" w-6 h-6 absolute right-4 md:w-8 dsk:bottom-8 dsk:right-8 dsk:w-10">
             <img src={avatar} />
           </div>
         </div>
-        <div className="flex gap-4 mt-6 pl-4 pb-6 md:mt-[33px] md:pl-[25px]">
+        <div className="flex gap-4 mt-6 pl-4 pb-6 md:mt-[33px] md:pl-[25px] dsk:pl-[164px] dsk:pt-16 dsk:mt-0">
           <img className="md:w-[32px]" src={searchIcon} />
           <input
             type="text"
