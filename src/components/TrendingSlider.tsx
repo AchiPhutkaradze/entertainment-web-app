@@ -12,13 +12,34 @@ export default function TrendingSlider(props: { resolution: number }) {
   });
 
   const settings = {
+    dots: false,
+    infinite: false,
+    slidesToShow: 1.5,
+    slidesToScroll: 1,
+    autoplay: false,
+    cssEase: "linear",
+    arrows: false,
+    variableWidth: false,
     responsive: [
       {
-        breakpoint: 1440,
+        breakpoint: 1439,
         settings: {
           dots: false,
           infinite: false,
           slidesToShow: 1.5,
+          slidesToScroll: 1,
+          autoplay: false,
+          cssEase: "linear",
+          arrows: false,
+          variableWidth: false,
+        },
+      },
+      {
+        breakpoint: 3000,
+        settings: {
+          dots: false,
+          infinite: false,
+          slidesToShow: 2.5,
           slidesToScroll: 1,
           autoplay: false,
           cssEase: "linear",
@@ -37,7 +58,7 @@ export default function TrendingSlider(props: { resolution: number }) {
   };
   return (
     <>
-      <div className="overflow-hidden bg-darkBlue pl-4 pt-6">
+      <div className="overflow-hidden bg-darkBlue pl-4 pt-6 dsk:ml-[165px] dsk:pl-0 dsk:pt-[34px]">
         <div className="pb-5 md:pb-[25px]">
           <h1 className="text-white size-5 leading-6 md:text-[32px] font-extralight	">
             Trending
@@ -47,7 +68,7 @@ export default function TrendingSlider(props: { resolution: number }) {
           {trending.map((item, index) => (
             <div className="overflow-hidden rounded-lg relative" key={index}>
               <img
-                className="w-full rounded-lg md:h-[295px] lg:h-[350px]"
+                className="w-full rounded-lg md:max-h-[295px] lg:h-[350px] dsk:min-h-[250px] dsk:max-h-[350px]"
                 src={
                   props.resolution < 768
                     ? item.thumbnail.trending?.small
