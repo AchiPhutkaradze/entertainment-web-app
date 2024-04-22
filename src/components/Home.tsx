@@ -13,18 +13,19 @@ export default function Home(props: {
 }) {
   const data: DataType[] = Data.filter((item) => item.isTrending === false);
 
-  const [dataItems, setDataItems] = useState(data);
+  const [_dataItems, setDataItems] = useState(data);
 
-  //function for add film to bookmark
-  const toogleBkmark = (index: number) => {
-    const updateItems = [...dataItems];
-    updateItems[index].isBookmarked = !updateItems[index].isBookmarked;
-    setDataItems(updateItems);
-  };
   //search functionality
   const filteredData = data.filter((item) => {
     return item.title.includes(props.inputValue);
   });
+  //function for add film to bookmark
+  const toogleBkmark = (index: number) => {
+    const updateItems = [...filteredData];
+    updateItems[index].isBookmarked = !updateItems[index].isBookmarked;
+    setDataItems(updateItems);
+  };
+
   return (
     <>
       {props.inputValue.length < 1 && (

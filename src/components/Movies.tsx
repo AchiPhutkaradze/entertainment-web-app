@@ -14,17 +14,18 @@ export default function Movies(props: Types) {
   const filteredData = Data.filter((item) => {
     return item.category === "Movie" && item.isTrending !== true;
   });
-  const [dataItems, setDataItems] = useState(filteredData);
-
-  const toogleBkmark = (index: number) => {
-    const updateItems = [...dataItems];
-    updateItems[index].isBookmarked = !updateItems[index].isBookmarked;
-    setDataItems(updateItems);
-  };
+  const [_dataItems, setDataItems] = useState(filteredData);
   //search functionality
   const films = filteredData.filter((item) => {
     return item.title.includes(props.inputValue);
   });
+  
+  const toogleBkmark = (index: number) => {
+    const updateItems = [...films];
+    updateItems[index].isBookmarked = !updateItems[index].isBookmarked;
+    setDataItems(updateItems);
+  };
+
   return (
     <div className=" h-lvh bg-darkBlue">
       <div className="bg-darkBlue pl-4 pr-4 md:pl-[25px] md:pr-6 pb-[60px] dsk:pl-[164px] dsk:pr-[36px] dsk:pb-[53px]">
