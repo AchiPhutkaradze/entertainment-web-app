@@ -27,15 +27,15 @@ export default function Movies(props: Types) {
   });
   return (
     <div className=" h-lvh bg-darkBlue">
-      <div className="bg-darkBlue pl-4 pr-4 md:pl-[25px] md:pr-6 pb-[60px]">
-        <div className=" pt-6 md:pt[33px]">
+      <div className="bg-darkBlue pl-4 pr-4 md:pl-[25px] md:pr-6 pb-[60px] dsk:pl-[164px] dsk:pr-[36px] dsk:pb-[53px]">
+        <div className=" pt-6 md:pt[33px] dsk:pt-0">
           <h1 className="text-[20px] text-white font-normal leading-6 md:text-[32px]">
             {props.inputValue.length >= 1
               ? `Found ${films.length} results for \`${props.inputValue}\``
               : "Movies"}
           </h1>
         </div>
-        <div className=" grid grid-cols-2 pt-6 gap-4 md:grid-cols-3 md:gap-y-[24px] md:gap-x-[29px] md:gap-0">
+        <div className=" grid grid-cols-2 pt-6 gap-4 md:grid-cols-3 md:gap-y-[24px] md:gap-x-[29px] md:gap-0 dsk:grid-cols-4 dsk:pt-8 dsk:gap-y-8 dsk:gap-x-10">
           {films.map((item: DataType, index) => {
             return (
               <div key={index} className="relative">

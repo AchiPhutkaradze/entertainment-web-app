@@ -46,15 +46,15 @@ export default function Bookmarked(props: inputValue) {
   return (
     <>
       <div>
-        <div className=" h-lvh bg-darkBlue">
+        <div className="h-lvh bg-darkBlue dsk:pl-[164px] dsk:pr-[36px] dsk:pb-[53px]">
           {searchedMovies.length >= 1 && props.inputValue.length === 0 ? (
-            <div className="pt-6 pl-4 md:pl-[25px] md:pr-[24px">
+            <div className="pt-6 pl-4 md:pl-[25px] md:pr-[24px] dsk:pl-0 dsk:pr-0 dsk:pt-0">
               <h1 className="text-[20px] text-white md:text-[32px]">
                 Bookmarked Movies
               </h1>
             </div>
           ) : props.inputValue.length >= 1 ? (
-            <div className="pl-4 pt-6 md:pl-[25px] md:pr-[24px">
+            <div className="pl-4 pt-6 md:pl-[25px] md:pr-[24px] dsk:pl-0 dsk:pr-0 dsk:pt-0">
               <h1 className="text-[20px] text-white md:text-[32px]">
                 {" "}
                 Found {searchedMovies.length + tvSeries.length} results for '
@@ -64,8 +64,8 @@ export default function Bookmarked(props: inputValue) {
           ) : (
             ""
           )}
-          <div className="bg-darkBlue pl-4 pr-4 md:pl-[25px] md:pr-[24px] ">
-            <div className="grid grid-cols-2 pt-6 gap-4 md:grid-cols-3 md:gap-y-[24px] md:gap-x-[29px] md:gap-0">
+          <div className="bg-darkBlue pl-4 pr-4 md:pl-[25px] md:pr-[24px] dsk:pl-0 dsk:pr-0 ">
+            <div className="grid grid-cols-2 pt-6 gap-4 md:grid-cols-3 md:gap-y-[24px] md:gap-x-[29px] md:gap-0  dsk:grid-cols-4 dsk:pt-8 dsk:gap-y-8 dsk:gap-x-10">
               {searchedMovies.map((item: DataType, index) => {
                 return (
                   <div key={index} className="relative">
@@ -103,14 +103,14 @@ export default function Bookmarked(props: inputValue) {
             </div>
           </div>
           {tvSeries.length >= 1 && props.inputValue.length === 0 && (
-            <div className="pt-6 pl-4 md:pl-[25px] md:pr-[24px">
+            <div className="pt-6 pl-4 md:pl-[25px] md:pr-[24px] dsk:pr-0 dsk:pl-0">
               <h1 className="text-[20px] text-white md:text-[32px]">
                 Bookmarked Movies
               </h1>
             </div>
           )}
-          <div className="bg-darkBlue pl-4 pr-4 md:pl-[25px] md:pr-[24px ">
-            <div className=" grid grid-cols-2 pt-6 gap-4 md:grid-cols-3 md:gap-y-[24px] md:gap-x-[29px] md:gap-0">
+          <div className="bg-darkBlue pl-4 pr-4 md:pl-[25px] md:pr-[24px] dsk:pl-0 dsk:pr-0">
+            <div className=" grid grid-cols-2 pt-6 gap-4 md:grid-cols-3 md:gap-y-[24px] md:gap-x-[29px] md:gap-0  dsk:grid-cols-4 dsk:pt-8 dsk:gap-y-8 dsk:gap-x-10">
               {tvSeries.map((item: DataType, index) => {
                 return (
                   <div key={index} className="relative">

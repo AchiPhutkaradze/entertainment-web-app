@@ -67,7 +67,7 @@ export default function NavBar(props: {
             <img src={avatar} />
           </div>
         </div>
-        <div className="flex gap-4 mt-6 pl-4 pb-6 md:mt-[33px] md:pl-[25px] dsk:pl-[164px] dsk:pt-16 dsk:mt-0">
+        <div className="flex gap-4 mt-6 pl-4 pb-6 md:mt-[33px] md:pl-[25px] dsk:pl-[164px] dsk:pt-16 dsk:mt-0 dsk:pb-[34px]">
           <img className="md:w-[32px]" src={searchIcon} />
           <input
             type="text"
