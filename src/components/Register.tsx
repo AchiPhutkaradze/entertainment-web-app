@@ -68,6 +68,7 @@ export default function Register() {
             </div>
             <div className="flex relative w-full">
               <input
+                maxLength={16}
                 style={inputStyle}
                 className="bg-bgLoginCard pl-4 h-inputHeight outline-none text-white w-full"
                 placeholder="Password"
@@ -86,6 +87,7 @@ export default function Register() {
             </div>
             <div className="flex relative w-full">
               <input
+                maxLength={16}
                 style={inputStyle}
                 className="bg-bgLoginCard pl-4 h-inputHeight outline-none text-white w-full"
                 placeholder="Repeat Password"
@@ -110,7 +112,7 @@ export default function Register() {
             </div>
             <button
               type="submit"
-              className=" bg-bgLoginBtn  w-full text-center pt-4 pb-4 rounded-md mt-10 text-white md:mt-0 font-extralight"
+              className=" bg-bgLoginBtn  w-full text-center pt-4 pb-4 rounded-md mt-10 text-white md:mt-0 font-extralight dsk:hover:bg-white dsk:hover:text-black"
             >
               Create an account
             </button>

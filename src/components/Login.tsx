@@ -25,7 +25,7 @@ export default function Login() {
       setValidationObj(emailAndPass);
     }
   }, []);
-
+  console.log(validationObj);
   const {
     register,
     handleSubmit,
@@ -70,6 +70,13 @@ export default function Login() {
                     value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
                     message: "enter valid email",
                   },
+                  validate: (value: string) => {
+                    if (value !== validationObj.email) {
+                      return "Incorrect email";
+                    } else {
+                      return true;
+                    }
+                  },
                 })}
               />
               {errors.email && (
@@ -95,11 +102,18 @@ export default function Login() {
             </div>
             <div className="flex relative w-full">
               <input
+                maxLength={16}
                 style={inputStyle}
                 className="bg-bgLoginCard pl-4 h-inputHeight outline-none text-white w-full"
                 placeholder="Password"
                 {...register("password", {
                   required: "can't be empty",
+                  validate: (value: string) => {
+                    if (value !== validationObj.password) {
+                      return "Incorrect password";
+                    }
+                    return true;
+                  },
                 })}
               />
               {errors.password && (
@@ -117,7 +131,7 @@ export default function Login() {
               <Link to={`/home`}>
                 <button
                   type="submit"
-                  className=" bg-bgLoginBtn  w-full text-center pt-4 pb-4 rounded-md mt-4 text-white"
+                  className=" bg-bgLoginBtn  w-full text-center pt-4 pb-4 rounded-md mt-4 text-white dsk:hover:bg-white dsk:hover:text-black"
                 >
                   Login to your account
                 </button>
@@ -125,7 +139,7 @@ export default function Login() {
             ) : (
               <button
                 type="submit"
-                className=" bg-bgLoginBtn  w-full text-center pt-4 pb-4 rounded-md mt-4 text-white font-extralight"
+                className=" bg-bgLoginBtn  w-full text-center pt-4 pb-4 rounded-md mt-4 text-white font-extralight dsk:hover:bg-white dsk:hover:text-black"
               >
                 Login to your account
               </button>
